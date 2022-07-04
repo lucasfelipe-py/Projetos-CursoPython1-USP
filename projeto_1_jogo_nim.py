@@ -1,17 +1,18 @@
 def computador_escolhe_jogada(n, m):
     troca_turno = False
-    x = 1
+    iteracao = 1
+    
     while troca_turno == False:
-        if ((n - x) % (m + 1)) == 0:
-            escolha_computador = x
+        if ((n - iteracao) % (m + 1)) == 0:
+            escolha_computador = iteracao
             troca_turno = True
             return escolha_computador
-        if x >= m:
+        if iteracao >= m:
             escolha_computador = m
             troca_turno = True
             return escolha_computador
         else:
-            x += 1
+            iteracao += 1
 #-------------------------------------------------------------------
 def usuario_escolhe_jogada(m):
     troca_turno = False
@@ -28,12 +29,12 @@ def usuario_escolhe_jogada(m):
             print('Oops! Jogada inválida! Tente de novo.\n')
 #------------------------------------------------------------------
 def partida():
-    n_esc = int(input('Quantas peças? '))
-    m_esc = int(input('Limite de peças por jogada? '))
+    n_escolhido = int(input('Quantas peças? '))
+    m_escolhido = int(input('Limite de peças por jogada? '))
     print()
-    pcs_restantes = n_esc
+    pcs_restantes = n_escolhido
     
-    if ((n_esc) % (m_esc + 1)) == 0:
+    if ((n_escolhido) % (m_escolhido + 1)) == 0:
         print('Você começa!')
         bot_jogou = True
     else:
@@ -42,19 +43,19 @@ def partida():
   
     while pcs_restantes > 0:
         if bot_jogou == True:
-            jogada = usuario_escolhe_jogada(m_esc)
+            jogada = usuario_escolhe_jogada(m_escolhido)
             print(f'Você tirou {jogada} peça(s)')
-            pcs_restantes = pcs_restantes - jogada
+            pcs_restantes -= jogada
             if pcs_restantes > 1:
                 print(f'Agora restam {pcs_restantes} peças no tabuleiro.')
             else:
                 print(f'Agora resta apenas uma peça no tabuleiro.')
             bot_jogou = False
         else:
-            jogada = computador_escolhe_jogada(pcs_restantes, m_esc)
+            jogada = computador_escolhe_jogada(pcs_restantes, m_escolhido)
             print()
             print(f'O computador tirou {jogada} peça(s)')
-            pcs_restantes = pcs_restantes - jogada
+            pcs_restantes -= jogada
             if pcs_restantes > 1:
                 print(f'Agora restam {pcs_restantes} peças no tabuleiro.\n')
             else:
@@ -78,13 +79,13 @@ def main():
     print('1 - para jogar uma partida isolada')
     print('2 - para jogar um campeonato')
     
-    c_ou_p = int(input())
+    camp_ou_isolada = int(input())
     
-    if c_ou_p == 1:
+    if camp_ou_isolada == 1:
         print('Você escolheu uma partida isolada!\n')
         print('**** Rodada 1 *****\n')
         partida()
-    if c_ou_p == 2:
+    elif camp_ou_isolada == 2:
         print('Você escolheu um campeonato!\n')
         campeonato()
 #----------------------------------------------------------------------       
