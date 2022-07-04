@@ -13,21 +13,19 @@ def computador_escolhe_jogada(n, m):
         else:
             x += 1
 #-------------------------------------------------------------------
-def usuario_escolhe_jogada(n, m):
+def usuario_escolhe_jogada(m):
     troca_turno = False
     
     while troca_turno == False:
         pcs_remover = int(input('Quantas peças você vai tirar? '))
         print()
         
-        if (pcs_remover >= 1) and (pcs_remover <= m):
+        if pcs_remover >= 1 and pcs_remover <= m:
             escolha_usuario = pcs_remover
             troca_turno = True
             return escolha_usuario
         else:
-            print()
-            print('Oops! Jogada inválida! Tente de novo.')
-            print()
+            print('Oops! Jogada inválida! Tente de novo.\n')
 #------------------------------------------------------------------
 def partida():
     n_esc = int(input('Quantas peças? '))
@@ -44,12 +42,12 @@ def partida():
   
     while pcs_restantes > 0:
         if bot_jogou == True:
-            jogada = usuario_escolhe_jogada(pcs_restantes, m_esc)
+            jogada = usuario_escolhe_jogada(m_esc)
             print(f'Você tirou {jogada} peça(s)')
             pcs_restantes = pcs_restantes - jogada
             if pcs_restantes > 1:
                 print(f'Agora restam {pcs_restantes} peças no tabuleiro.')
-            if pcs_restantes == 1:
+            else:
                 print(f'Agora resta apenas uma peça no tabuleiro.')
             bot_jogou = False
         else:
@@ -58,53 +56,36 @@ def partida():
             print(f'O computador tirou {jogada} peça(s)')
             pcs_restantes = pcs_restantes - jogada
             if pcs_restantes > 1:
-                print(f'Agora restam {pcs_restantes} peças no tabuleiro.')
-                print()
-            if pcs_restantes == 1:
-                print(f'Agora resta apenas uma peça no tabuleiro.')
-                print()
+                print(f'Agora restam {pcs_restantes} peças no tabuleiro.\n')
+            else:
+                print(f'Agora resta apenas uma peça no tabuleiro.\n')
             bot_jogou = True
     
-    if pcs_restantes == 0:
-        if bot_jogou == True:
-            print('Fim do jogo! O computador ganhou!')
-        else: 
-            print('Fim do jogo! Você ganhou!')
+    print('Fim do jogo! O computador ganhou!\n')
 #------------------------------------------------------------------------
 def campeonato():
-    print()
-    print('**** Rodada 1 *****')
-    print()
+    print('**** Rodada 1 *****\n')
     partida()
-    print()
-    print('**** Rodada 2 *****')
-    print()
+    print('**** Rodada 2 *****\n')
     partida()
-    print()
-    print('**** Rodada 3 *****')
-    print()
+    print('**** Rodada 3 *****\n')
     partida()
-    print()
-    print('**** Final do campeonato! *****')
-    print()
+    print('**** Final do campeonato! *****\n')
     print('Placar: Você 0 X 3 Computador')
 #-----------------------------------------------------------------------
 def main():
-    print('Bem-vindo ao jogo do NIM! Escolha:')
-    print()
+    print('Bem-vindo ao jogo do NIM! Escolha:\n')
     print('1 - para jogar uma partida isolada')
     print('2 - para jogar um campeonato')
     
     c_ou_p = int(input())
     
     if c_ou_p == 1:
-        print('Você escolheu uma partida isolada!')
-        print()
-        print('**** Rodada 1 *****')
-        print()
+        print('Você escolheu uma partida isolada!\n')
+        print('**** Rodada 1 *****\n')
         partida()
     if c_ou_p == 2:
-        print('Você escolheu um campeonato!')
+        print('Você escolheu um campeonato!\n')
         campeonato()
 #----------------------------------------------------------------------       
 main()
